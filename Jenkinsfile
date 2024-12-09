@@ -2,7 +2,7 @@ pipeline {
     agent { label 'worker' }
 
     environment {
-        IMAGE_NAME = 'docker.io/ndrx895/forstep2'
+        IMAGE_NAME = 'hub.docker.com/repository/docker/ndrx895/forstep2'
         DOCKER_TAG = 'latest'
     }
 
