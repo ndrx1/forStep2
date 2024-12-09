@@ -21,7 +21,7 @@ pipeline {
             steps {
                 script {
                     docker.image('my-node-app').inside {
-                        sh 'npm test'
+                        sh 'pwd && ls -la && npm test'
                     }
                 }
             }
