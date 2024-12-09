@@ -8,7 +8,7 @@ pipeline {
     stages {
         stage('Pull Code') {
             steps {
-                git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/ndrx1/forStep2.git'
+                git credentialsId: 'GitHub_Credentials_ID', url: 'https://github.com/ndrx1/forStep2.git', branch: 'main'
             }
         }
         
