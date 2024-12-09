@@ -20,8 +20,7 @@ pipeline {
         stage('Run Tests') {
             steps {
                 script {
-                    def dockerImage = docker.image('my-node-app')
-                    dockerImage.inside {
+                    docker.image('my-node-app').inside {
                         sh 'npm test'
                     }
                 }
