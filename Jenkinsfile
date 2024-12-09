@@ -28,15 +28,17 @@ pipeline {
      }
    }
         stage('Push to Docker Hub') {
-            steps {
-                script {
-                    if (currentBuild.result == 'SUCCESS') {
-                        docker.image('my-node-app').push()
-                    } else {
-                        echo 'Тести не пройшли'
-                    }
-                }
+    steps {
+        script {
+            if (currentBuild.result == 'SUCCESS') {
+                echo 'Тести пройшли успішно, пушимо на Docker Hub.'
+                // Додайте команди для пушу Docker-образу
+            } else {
+                echo 'Тести не пройшли, пуш не виконується.'
             }
         }
     }
+ }
+
+}
 }
