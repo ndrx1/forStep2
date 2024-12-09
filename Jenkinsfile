@@ -1,7 +1,7 @@
 pipeline {
     agent none
     triggers {
-        gitlabPush()
+        githubPush()
     }
     stages {
         stage('Клонування репозиторію') {
