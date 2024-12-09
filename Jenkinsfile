@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jenkins-worker' }
+    agent { label 'worker' }
 
     environment {
         GIT_CREDENTIALS = 'GitHub Credentials'  // Назва ваших облікових даних
