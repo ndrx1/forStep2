@@ -17,28 +17,32 @@ pipeline {
             }
         }
 
-        stage('Run Tests') {
+     def testPassed = false
+
+stage('Run Tests') {
     steps {
         script {
-            docker.image('my-node-app').inside {
-                sh 'npm install --include=dev' // Установити залежності повторно
-                sh 'npm test'                 // Запустити тести
+            try {
+                sh 'npm test'
+                testPassed = true
+            } catch (Exception e) {
+                testPassed = false
             }
         }
-     }
-   }
-        stage('Push to Docker Hub') {
+    }
+}
+
+stage('Push to Docker Hub') {
     steps {
         script {
-            if (currentBuild.result == 'SUCCESS') {
+            if (testPassed) {
                 echo 'Тести пройшли успішно, пушимо на Docker Hub.'
-                // Додайте команди для пушу Docker-образу
+                // Команди для пушу Docker образу
             } else {
                 echo 'Тести не пройшли, пуш не виконується.'
             }
         }
     }
- }
-
+}
 }
 }
