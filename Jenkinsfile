@@ -2,7 +2,7 @@ pipeline {
     agent { label 'worker' }
 
     environment {
-        IMAGE_NAME = 'my-node-app'
+        IMAGE_NAME = 'ndrx895/my-node-app'
         DOCKER_TAG = 'latest'
     }
 
