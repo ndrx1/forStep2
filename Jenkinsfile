@@ -7,7 +7,7 @@ pipeline {
         stage('Клонування репозиторію') {
             agent { label 'worker' }
             steps {
-                git branch: 'main', url: 'https://github.com/ndrx1/forStep2.git'
+                git branch: 'main', url: 'https://github.com/ndrx1/forstep2.git'
             }
         }
         stage('Збірка Docker-образу') {
@@ -19,7 +19,7 @@ pipeline {
         stage('Запуск тестів') {
             agent { label 'worker' }
             steps {
-                sh 'docker run --rm forStep2 npm test'
+                sh 'docker run --rm forstep2 npm test'
             }
         }
         stage('Відправка в Docker Hub') {
@@ -33,8 +33,8 @@ pipeline {
                 withCredentials([usernamePassword(credentialsId: 'docker-hub-creds', usernameVariable: 'DOCKER_USER', passwordVariable: 'DOCKER_PASS')]) {
                     sh '''
                         echo "$DOCKER_PASS" | docker login -u "$DOCKER_USER" --password-stdin
-                        docker tag forStep2:latest $DOCKER_USER/forStep2:latest
-                        docker push $DOCKER_USER/forStep2:latest
+                        docker tag forStep2:latest $DOCKER_USER/forstep2:latest
+                        docker push $DOCKER_USER/forstep2:latest
                     '''
                 }
             }
