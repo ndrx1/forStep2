@@ -13,7 +13,7 @@ pipeline {
         stage('Збірка Docker-образу') {
             agent { label 'worker' }
             steps {
-                sh 'docker build -t forStep2 .'
+                sh 'docker build -t forstep2 .'
             }
         }
         stage('Запуск тестів') {
