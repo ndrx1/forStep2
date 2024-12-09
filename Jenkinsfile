@@ -45,7 +45,7 @@ pipeline {
                     if (testPassed) {
                         echo 'Тести пройшли успішно, пушимо на Docker Hub.'
                         // Команди для пушу Docker образу на Docker Hub
-                        docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') {
+                        docker.withRegistry('https://index.docker.io/v1/', 'docker-hub-credentials') {
                             docker.image("${IMAGE_NAME}:${DOCKER_TAG}").push()
                         }
                     } else {
