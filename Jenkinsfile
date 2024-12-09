@@ -1,14 +1,9 @@
 pipeline {
     agent { label 'worker' }
-
-    environment {
-        GIT_CREDENTIALS = 'GitHub Credentials'  // Назва ваших облікових даних
-    }
-
     stages {
         stage('Pull Code') {
             steps {
-                git credentialsId: 'GitHub_Credentials_ID', url: 'https://github.com/ndrx1/forStep2.git', branch: 'main'
+                git url: 'https://github.com/ndrx1/forStep2.git', branch: 'main'
             }
         }
         
