@@ -3,6 +3,10 @@ FROM node:14
 # Встановлюємо робочий каталог всередині контейнера
 WORKDIR /app
 
+# Перевірка версії Node.js та npm
+RUN node -v
+RUN npm -v
+
 # Копіюємо package.json і package-lock.json (якщо є) для залежностей
 COPY package*.json ./
 
@@ -17,6 +21,7 @@ COPY . .
 # Відкриваємо порт, на якому працюватиме ваш додаток
 EXPOSE 3000
 
+# Перевірка версії jest
 RUN npx jest --version
 
 # Встановлюємо команду для запуску додатку
