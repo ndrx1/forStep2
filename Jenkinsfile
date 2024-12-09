@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         IMAGE_NAME = 'ndrx895/my-node-app'
-        DOCKER_TAG = 'latest'
+        docker tag my-node-app:latest docker.io/ndrx895/my-node-app:latest
     }
 
     stages {
