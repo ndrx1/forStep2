@@ -1,12 +1,14 @@
 pipeline {
     agent { label 'worker' }
+
     stages {
         stage('Pull Code') {
             steps {
+                // Відключено використання облікових даних
                 git url: 'https://github.com/ndrx1/forStep2.git', branch: 'main'
             }
         }
-        
+
         stage('Build Docker Image') {
             steps {
                 script {
@@ -30,9 +32,7 @@ pipeline {
             steps {
                 script {
                     if (currentBuild.result == 'SUCCESS') {
-                        docker.withRegistry('https://index.docker.io/v1/', DOCKER_HUB_CREDENTIALS) {
-                            docker.image('my-node-app').push()
-                        }
+                        docker.image('my-node-app').push()
                     } else {
                         echo 'Тести не пройшли'
                     }
