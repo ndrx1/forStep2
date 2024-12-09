@@ -9,7 +9,6 @@ pipeline {
     stages {
         stage('Pull Code') {
             steps {
-                // Відключено використання облікових даних
                 git url: 'https://github.com/ndrx1/forStep2.git', branch: 'main'
             }
         }
@@ -27,13 +26,12 @@ pipeline {
             steps {
                 script {
                     try {
-                        // Перевірка доступності npm і запуск тестів
-                        sh 'npm -v'
-                        sh 'npx jest --version'  // Перевірка доступності jest
-                        sh 'npm test'  // Запуск тестів
+                        // Запуск тестів всередині Docker контейнера
+                        docker.image("${IMAGE_NAME}:${DOCKER_TAG}").inside {
+                            sh 'npm test'  // Тести будуть запускатись в середовищі контейнера
+                        }
                         testPassed = true
                     } catch (Exception e) {
-                        // Якщо тест не пройшов
                         testPassed = false
                         currentBuild.result = 'FAILURE'
                     }
@@ -44,7 +42,6 @@ pipeline {
         stage('Push to Docker Hub') {
             steps {
                 script {
-                    // Якщо тести пройшли, пушимо образ
                     if (testPassed) {
                         echo 'Тести пройшли успішно, пушимо на Docker Hub.'
                         // Команди для пушу Docker образу на Docker Hub
