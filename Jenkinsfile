@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'jenkins-worker' }
+    agent { label 'worker' }
 
     environment {
         DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials-id' // замініть на реальний ID облікових даних
