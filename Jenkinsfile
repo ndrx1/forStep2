@@ -17,11 +17,12 @@ pipeline {
             }
         }
 
-     def testPassed = false
+    
 
 stage('Run Tests') {
     steps {
         script {
+             def testPassed = false
             try {
                 sh 'npm test'
                 testPassed = true
