@@ -1,14 +1,14 @@
 pipeline {
-    agent { label 'worker' }
+    agent { label 'jenkins-worker' }
 
     environment {
-        DOCKER_HUB_CREDENTIALS = 'docker-hub-credentials-id' // замініть на реальний ID облікових даних
+        GIT_CREDENTIALS = 'GitHub Credentials'  // Назва ваших облікових даних
     }
 
     stages {
         stage('Pull Code') {
             steps {
-                git 'https://github.com/yourusername/forStep2.git'
+                git credentialsId: "${GIT_CREDENTIALS}", url: 'https://github.com/ndrx1/forStep2.git'
             }
         }
         
