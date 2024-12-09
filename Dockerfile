@@ -9,6 +9,7 @@ COPY package*.json ./
 # Встановлюємо залежності
 RUN npm install --include=dev
 RUN npm install -g jest
+RUN npm list supertest
 
 # Копіюємо решту коду програми
 COPY . .
