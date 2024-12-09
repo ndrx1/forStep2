@@ -7,7 +7,7 @@ WORKDIR /app
 COPY package*.json ./
 
 # Встановлюємо залежності
-RUN npm install
+RUN npm install --include=dev
 RUN npm install -g jest
 
 # Копіюємо решту коду програми
