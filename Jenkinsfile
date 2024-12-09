@@ -18,15 +18,15 @@ pipeline {
         }
 
         stage('Run Tests') {
-            steps {
-                script {
-                    docker.image('my-node-app').inside {
-                        sh 'pwd && ls -la && npm test'
-                    }
-                }
+    steps {
+        script {
+            docker.image('my-node-app').inside {
+                sh 'npm install --include=dev' // Установити залежності повторно
+                sh 'npm test'                 // Запустити тести
             }
         }
-
+     }
+   }
         stage('Push to Docker Hub') {
             steps {
                 script {
