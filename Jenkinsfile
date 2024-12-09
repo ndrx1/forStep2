@@ -2,7 +2,7 @@ pipeline {
     agent { label 'worker' }
 
     environment {
-        IMAGE_NAME = 'https://hub.docker.com/repository/docker/ndrx895/forstep2'
+        IMAGE_NAME = 'ndrx895/forstep2'
         DOCKER_TAG = 'latest'
     }
 
@@ -45,7 +45,7 @@ pipeline {
                     if (testPassed) {
                         echo 'Тести пройшли успішно, пушимо на Docker Hub.'
                         // Команди для пушу Docker образу на Docker Hub
-                        docker.withRegistry('https://docker.io', 'docker-hub-credentials') {
+                        docker.withRegistry('https://hub.docker.com', 'docker-hub-credentials') {
                             docker.image("${IMAGE_NAME}:${DOCKER_TAG}").push()
                         }
                     } else {
